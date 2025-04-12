@@ -1,0 +1,394 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+:root {
+  --background-color: #4CAF50;
+  --element-background: #F5F5DC;
+  --text-color: #4CAF50;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-color-hover: rgba(0, 0, 0, 0.2);
+  --correct-color: #2196F3;
+  --incorrect-color: #f44336;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.main-menu {
+  text-align: center;
+  background-color: var(--element-background);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.main-menu h1 {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.start-button {
+  background-color: var(--text-color);
+  color: var(--element-background);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.start-button:hover {
+  transform: scale(1.05);
+}
+
+.game-screen {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--element-background);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  position: relative;
+  margin: 0 auto;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.lives {
+  display: flex;
+  gap: 1rem;
+}
+
+.score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.final-score {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.heart {
+  font-size: 1.5rem;
+}
+
+.hiragana-container {
+  position: relative;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.speaker-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: none;
+  border: 1px solid var(--border-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.8rem;
+  color: var(--text-color);
+  border-radius: 12px;
+  transition: border-color 0.2s;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.speaker-button:hover {
+  border-color: var(--border-color-hover);
+}
+
+.speaker-button:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.hiragana-character {
+  font-size: 8rem;
+  color: var(--text-color);
+  margin: 2rem 0;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.option-button {
+  background-color: var(--text-color);
+  color: var(--element-background);
+  border: none;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option-button:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.option-button:active {
+  transform: scale(0.98);
+}
+
+.option-button:hover {
+  transform: scale(1.02);
+}
+
+/* Add a class to disable hover effect after selection */
+.option-button.selected {
+  pointer-events: none;
+  transform: none;
+}
+
+.korean-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.romaji-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.result {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.result.correct {
+  color: var(--correct-color);
+}
+
+.result.incorrect {
+  color: var(--incorrect-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .game-screen, .results-page {
+    padding: 1rem;
+  }
+
+  .hiragana-character {
+    font-size: 6rem;
+  }
+
+  .option-button {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+  
+  .result-hiragana {
+    font-size: 1.5rem;
+  }
+  
+  .result-details div {
+    font-size: 0.9rem;
+  }
+  
+  .play-again-button, .menu-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Results Page Styles */
+.results-page {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--element-background);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.results-page h1 {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.results-page h2 {
+  color: var(--text-color);
+  margin: 1.5rem 0 1rem;
+  font-size: 1.5rem;
+}
+
+.results-summary {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.results-summary p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.results-container {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.result-item.correct {
+  border-left: 4px solid var(--correct-color);
+}
+
+.result-item.incorrect {
+  border-left: 4px solid var(--incorrect-color);
+}
+
+.result-hiragana {
+  font-size: 2rem;
+  color: var(--text-color);
+  margin-right: 1rem;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.result-details {
+  flex: 1;
+}
+
+.result-details div {
+  margin: 0.2rem 0;
+  color: var(--text-color);
+}
+
+.result-indicator {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.results-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.play-again-button, .menu-button {
+  background-color: var(--text-color);
+  color: var(--element-background);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.play-again-button:hover, .menu-button:hover {
+  transform: scale(1.05);
+}
