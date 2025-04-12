@@ -224,25 +224,47 @@ function App() {
       // Cancel any ongoing speech
       window.speechSynthesis.cancel();
       
-      const utterance = new SpeechSynthesisUtterance(characterToSpeak.character);
-      utterance.lang = 'ja-JP';
-      
-      // Try to get a Japanese voice
-      const voices = window.speechSynthesis.getVoices();
-      const japaneseVoice = voices.find(voice => 
-        voice.name.toLowerCase().includes('o-ren') ?? voice.lang.includes('ja') ?? voice.lang.includes('jp')
-      );
-      
-      if (japaneseVoice) {
-        utterance.voice = japaneseVoice;
+      // Wait for voices to be loaded
+      const speak = () => {
+        const utterance = new SpeechSynthesisUtterance(characterToSpeak.character);
+        utterance.lang = 'ja-JP';
+        
+        // Get all available voices
+        const voices = window.speechSynthesis.getVoices();
+        
+        // Try to find O-ren voice first
+        let selectedVoice = voices.find(voice => 
+          voice.name.toLowerCase().includes('o-ren')
+        );
+        
+        // If O-ren is not found, try other Japanese voices
+        if (!selectedVoice) {
+          selectedVoice = voices.find(voice => 
+            voice.lang.includes('ja') || voice.lang.includes('jp')
+          );
+        }
+        
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
+        }
+        
+        // Adjust speech parameters for more natural sound
+        utterance.rate = 0.8; // Slightly slower
+        utterance.pitch = 1.0; // Normal pitch
+        utterance.volume = 1.0; // Full volume
+        
+        window.speechSynthesis.speak(utterance);
+      };
+
+      // Check if voices are already loaded
+      if (window.speechSynthesis.getVoices().length > 0) {
+        speak();
+      } else {
+        // If voices are not loaded yet, wait for them
+        window.speechSynthesis.onvoiceschanged = () => {
+          speak();
+        };
       }
-      
-      // Adjust speech parameters for more natural sound
-      utterance.rate = 0.8; // Slightly slower
-      utterance.pitch = 1.0; // Normal pitch
-      utterance.volume = 1.0; // Full volume
-      
-      window.speechSynthesis.speak(utterance);
     }
   };
 
