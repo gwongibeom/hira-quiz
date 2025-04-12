@@ -202,8 +202,10 @@ function App() {
       isCorrect
     }]);
 
-    // Play pronunciation of the selected answer
-    playAudio(selectedHiragana);
+    // Play pronunciation of the correct answer
+    if (currentHiragana) {
+      playAudio(currentHiragana);
+    }
 
     setTimeout(() => {
       setShowResult(null);
