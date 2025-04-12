@@ -1,54 +1,47 @@
-# React + TypeScript + Vite
+# 히라가나 퀴즈 (Hiragana Quiz)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+일본어 히라가나 문자를 학습하기 위한 인터랙티브 퀴즈 애플리케이션입니다.
 
-Currently, two official plugins are available:
+## 기능
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 히라가나 문자 학습 및 퀴즈 풀기
+- 발음 듣기 기능 (브라우저 음성 합성 사용)
+- 점수 시스템 및 생명력 표시
+- 결과 페이지에서 학습 내용 확인
+- 반응형 디자인으로 모바일에서도 사용 가능
 
-## Expanding the ESLint configuration
+## 기술 스택
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- CSS3
+- Web Speech API (발음 기능)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 개발자
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+이 프로젝트는 커서를 통해 개발되었습니다.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 사용 방법
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+1. "시작하기" 버튼을 클릭하여 퀴즈를 시작합니다.
+2. 화면에 표시된 히라가나 문자에 해당하는 한글 발음을 선택합니다.
+3. 스피커 버튼을 클릭하여 히라가나 발음을 들을 수 있습니다.
+4. 정답을 맞추면 점수가 올라가고, 오답을 선택하면 생명력이 감소합니다.
+5. 생명력이 모두 소진되면 결과 페이지가 표시됩니다.
+6. 결과 페이지에서 학습 내용을 확인하고 다시 시작하거나 메인 메뉴로 돌아갈 수 있습니다.
+
+## 설치 및 실행
+
+```bash
+# 저장소 클론
+git clone https://github.com/yourusername/hira-quiz.git
+
+# 프로젝트 디렉토리로 이동
+cd hira-quiz
+
+# 의존성 설치
+pnpm install
+
+# 개발 서버 실행
+pnpm run dev
 ```
